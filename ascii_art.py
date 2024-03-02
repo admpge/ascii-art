@@ -1,34 +1,27 @@
 from PIL import Image
 
 # Array of ASCII characters
-ASCII_CHARS = ["@", "#", "S", "%", "?", "*", "+", ";", ":", ",", ".", " ", "Ä", "Å", "é", "®", "±"]
+ASCII_CHARS = [" ", ".", ",", ":", ";", "+", "*", "?", "%", "S", "#", "@"]
+
 
 # Resize image
 def resize_image(image, new_width=100):
     width, height = image.size
-    ratio = height / width / 1.75
-    new_height = int(new_width * ratio)
+    ratio = height / width 
+    new_height = int(new_width * ratio * 0.55)
     resized_image = image.resize((new_width, new_height))
     return resized_image
 
 # Convert image to grayscale
 def grayify(image):
-    grayscale_image = image.convert("L")
-    return grayscale_image
-
-# Adjust brightness
-def adjust_brightness(pixel_value, brightness_factor):
-    adjusted_value = int(pixel_value * brightness_factor)
-    return min(max(adjusted_value, 0), 255) 
-
+    return image.convert("L")
 
 # Convert pixels to ASCII
 def pixels_to_ascii(image):
     pixels = image.getdata()
     ascii_str = ""
-    for pixel_value in pixels:
-        adjusted_pixel_value = adjust_brightness(pixel_value, 1.5)
-        ascii_str += ASCII_CHARS[pixel_value // 25]
+    for pixel in pixels:
+        ascii_str += ASCII_CHARS[pixel // 25]
     return ascii_str
 
 def main(new_width=100):

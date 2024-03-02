@@ -7,7 +7,6 @@ This Python project converts images into ASCII art. It uses the Pillow (PIL) lib
 -   Resizes images to maintain aspect ratio
 -   Converts images to grayscale
 -   Maps pixel brightness to a customizable list of ASCII characters
--   Includes adjustable brightness control
 -   Saves the ASCII art output to a text file
 
 ## Installation
